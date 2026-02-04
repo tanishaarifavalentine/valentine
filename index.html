@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Valentine ❤️</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  color: #333;
+  text-align: center;
+}
+.page {
+  display: none;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+.active {
+  display: block;
+}
+button {
+  padding: 14px 28px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  background: #ff4d6d;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+}
+button:hover {
+  background: #e63950;
+}
+.fake-no {
+  margin-top: 20px;
+  color: #555;
+  cursor: pointer;
+}
+.card {
+  background: white;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 400px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+.emoji {
+  font-size: 50px;
+}
+#letter {
+  font-family: monospace;
+  white-space: pre-wrap;
+  text-align: left;
+}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <h1>Will you be my Valentine,<br>Aarifa Miss Rude? 💘</h1>
+  <p>Choose wisely 😌</p>
+  <button onclick="goTo('page2')">YES ❤️</button>
+  <div class="fake-no" onclick="goTo('error')">NO ❌</div>
+</div>
+
+<!-- ERROR PAGE -->
+<div class="page" id="error">
+  <h1>⚠️ ERROR 404</h1>
+  <p>Option not found.<br>You are not allowed to say NO 💅</p>
+  <button onclick="goTo('page1')">Go Back ❤️</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <h1>Good choice 😌❤️</h1>
+  <p>Your surprises are waiting…</p>
+  <button onclick="goTo('page3')">Open Gifts 🎁</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <h1>Your Virtual Gifts 🎁</h1>
+
+  <div class="card">
+    <div class="emoji">🌹</div>
+    <p>These flowers are for you,<br>because you deserve them every day.</p>
+  </div>
+
+  <div class="card">
+    <div class="emoji">📸</div>
+    <p>This space is reserved for our favourite picture.<br>
+    I’ll add it when we create our next beautiful memory ❤️</p>
+  </div>
+
+  <div class="card">
+    <div class="emoji">😘</div>
+    <p>One kiss stored here,<br>until I give it to you in real life.</p>
+  </div>
+
+  <div class="card">
+    <h3>💌 A Letter For You</h3>
+    <div id="letter"></div>
+  </div>
+</div>
+
+<script>
+function goTo(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (id === 'page3') startTyping();
+}
+
+const text = `Dear Aarifa,
+
+I didn’t build this website
+to impress you.
+
+I built it because
+you matter to me.
+
+If love was simple,
+everyone would do this.
+
+Happy Valentine’s Day ❤️
+— Yours`;
+
+let i = 0;
+function startTyping() {
+  const el = document.getElementById('letter');
+  el.innerHTML = "";
+  i = 0;
+  const interval = setInterval(() => {
+    el.innerHTML += text.charAt(i);
+    i++;
+    if (i >= text.length) clearInterval(interval);
+  }, 50);
+}
+</script>
+
+</body>
+</html>
